@@ -46,7 +46,57 @@ include_once 'includes/dbh.inc.php'
             </tbody>
         </table>
     </div>
+    <center>
+        <div class="input-container">
+            <form method='post' action='' enctype='multipart/form-data'>
+                <label>Name:</label>
+                <input type="text" name="name" required="required" placeholder="Name of the animal" />
+                <input type='file' name='files[]' multiple />
+                <input type='submit' value='Submit' name='submit' />
+            </form>
+        </div>
+    </center>
+    <?php
 
+    if (isset($_POST['submit'])) {
+
+        // Count total files if submit button is POST
+        $countfiles = count($_FILES['files']['name']);
+
+        // Prepared statement INSERT
+        $query = "INSERT INTO animals (name,image) VALUES(?,?)";
+
+        $statement = $dbh->prepare($query);
+
+        // Loop all files
+        for ($i = 0; $i < $countfiles; $i++) {
+
+            // File name - here difined
+            $filename = $_FILES['files']['name'][$i];
+
+            // Location - here difined
+            $target_file = 'upload/' . $filename;
+
+            // file extension - for path
+            $file_extension = pathinfo($target_file, PATHINFO_EXTENSION);
+            $file_extension = strtolower($file_extension);
+
+            // Valid image extension
+            $valid_extension = array("png", "jpeg", "jpg");
+
+            if (in_array($file_extension, $valid_extension)) {
+
+                // Upload file
+                if (move_uploaded_file($_FILES['files']['tmp_name'][$i], $target_file)) {
+
+                    // Execute query
+                    $statement->execute(array($filename, $target_file));
+                }
+            }
+        }
+        echo "File upload successfully";
+    }
+    ?>
 </body>
 
 </html>
