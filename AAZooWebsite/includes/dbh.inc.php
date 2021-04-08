@@ -1,9 +1,3 @@
 <?php
 
-// Slå på all felrapportering. Bra under utveckling, dåligt i produktion.
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-$dbh = new PDO('mysql:host=localhost;dbname=zoo;port=8889;charset=UTF8', "zooadmin", "zoopwd");
-
+$dbh = new PDO('mysql:host=localhost;dbname=zoo;charset=UTF8;port=8889', 'zooadmin', 'zoopwd');

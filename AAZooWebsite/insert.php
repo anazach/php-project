@@ -1,31 +1,31 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-include_once 'includes/dbh.inc.php';
+include "includes/dbh.inc.php";
 ?>
-
 <html>
-
 <head>
-    <title>Add animals</title>
-    <link rel="stylesheet" href="style/style.css">
+<title>Add animals</title>
+<link rel="stylesheet" href="style/style.css">
 </head>
-
 <body>
-    <div id="addAnimal">
-        <h2>Add Animals</h2>
-        <form action="" method="post">
-            <label>Name:</label>
-            <input type="text" name="name" required="required" placeholder="Name of the animal" /><br /><br />
-            <label>Category:</label>
-            <input type="text" name="category" required="required" placeholder="Category" /><br /><br />
-            <label>Birthday:</label>
-            <input type="text" name="birthday" required="required" placeholder="Birth date" /><br /><br />
-            <input type="submit" value="Add animal" name="submit" /><br />
+<div id="addAnimal">
+<h2>Add Animals</h2>
+<form action="" method="post">
+<label>Name:</label>
+<input type="text" name="name" required="required" placeholder="Name of the animal"/><br /><br />
+<label>Category:</label>
+<input type="text" name="category" required="required" placeholder="Category"/><br/><br />
+<label>Birthday:</label>
+<input type="text" name="birthday" required="required" placeholder="Birth date"/><br/><br />
+
+ <div class="row mt-4">
+        <form action="upload.php" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit" name="uplad">Upload</button>
         </form>
     </div>
-
+<input type="submit" value="Add animal" name="submit"/><br />
+</form>
+</div>
 
 <?php
 if(isset($_POST["submit"])){
@@ -46,9 +46,8 @@ catch(PDOException $e)
 {
 echo $e->getMessage();
 }
+
 }
 ?>
-
 </body>
-
 </html>
