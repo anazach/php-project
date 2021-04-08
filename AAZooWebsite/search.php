@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include_once 'includes/dbh.inc.php';
-include 'adminpanel.php'
+include_once 'adminpanel.php'
 
 ?>
 
@@ -17,7 +17,7 @@ include 'adminpanel.php'
   <center>
     <h1>Search in database</h1>
     <?php
-    
+
     $query = "SELECT DISTINCT category FROM animals";
     ?>
     <div class="container mt-5 mb-5">
@@ -38,7 +38,7 @@ include 'adminpanel.php'
           </div>
           <div class="col-md-3">
 
-            <input class="btn btn-success" type="submit" name="submit" value="Search" />
+            <input class="btn btn-warning btn-lg" type="submit" name="submit" value="Search" />
           </div>
         </div>
     </div>
