@@ -1,7 +1,7 @@
 <?php 
-   include_once 'includes/dbh.inc.php';
-   ini_set('display_errors',1);
-   ini_set('display_startup_errors',1);
+   require('includes/dbh.inc.php');
+   ini_set('display_errors');
+   ini_set('display_startup_errors');
    error_reporting(E_ALL);
 ?>
 
@@ -15,14 +15,11 @@
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
+<h1>Home Page</h1>
 <?php 
-   include "login.php";
-
- 
-
+   include "search.php";
+   include "insert.php";
+   include "displaydata.php";
 ?>
-
-
-<h1>Hello Home Page</h1>
 </body>
 </html>

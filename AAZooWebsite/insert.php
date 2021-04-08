@@ -1,3 +1,6 @@
+<?php
+include "includes/dbh.inc.php";
+?>
 <html>
 <head>
 <title>Add animals</title>
@@ -19,13 +22,7 @@
 
 <?php
 if(isset($_POST["submit"])){
-$hostname='localhost';
-$username='root';
-$password='123';
-
 try {
-$dbh = new PDO("mysql:host=$hostname;dbname=zoo",$username,$password);
-
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // <== add this line
 $sql = "INSERT INTO animals (name, category, birthday)
 VALUES ('".$_POST["name"]."','".$_POST["category"]."','".$_POST["birthday"]."')";
@@ -42,7 +39,6 @@ catch(PDOException $e)
 {
 echo $e->getMessage();
 }
-
 }
 ?>
 </body>

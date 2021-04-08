@@ -9,7 +9,7 @@
 <body>
  <h1>Display data</h1>
  <?php
-$dbh = new PDO('mysql:host=localhost;dbname=zoo', zooadmin, zoopwd);
+ require("includes/dbh.inc.php");
 
   $query = "SELECT * FROM animals";
   $statement = $dbh->prepare($query, array(PDO::FETCH_ASSOC));$statement->execute(array(':id' > 0));
@@ -17,12 +17,6 @@ $dbh = new PDO('mysql:host=localhost;dbname=zoo', zooadmin, zoopwd);
   foreach ($result as $animals) {    
    echo $animals['name'] . "<br />";
   }
-
-    include "search.php";
-   include "insert.php";
-
-
-
   //  $query = "SELECT * FROM users";
   // $statement = $dbh->prepare($query, array(PDO::FETCH_ASSOC));$statement->execute(array(':id' > 0));
   // $result = $statement->fetchAll();
