@@ -1,8 +1,12 @@
 <?php 
    require('includes/dbh.inc.php');
-   ini_set('display_errors');
-   ini_set('display_startup_errors');
+   ini_set('display_errors',1);
+   ini_set('display_startup_errors',1);
    error_reporting(E_ALL);
+include_once 'navbar.php';
+include 'zooform.php';
+include "search.php";
+include_once 'footer.php'
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,10 +22,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 </head>
 <body>
-<h1>Home Page</h1>
+
 <?php
-   include "insert.php";
-   include "search.php";
+   
+   //include "search.php";
 ?>
 </body>
 </html>
