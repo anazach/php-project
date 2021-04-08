@@ -26,32 +26,29 @@ include_once 'includes/dbh.inc.php';
         </form>
     </div>
 
-    <?php
 
-    
-        if (isset($_POST["submit"])) {
-         $hostname = 'localhost';
-            $username = 'zooadmin';
-            $password = 'zoopwd';
+<?php
+if(isset($_POST["submit"])){
+try {
+$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // <== add this line
+$sql = "INSERT INTO animals (name, category, birthday)
+VALUES ('".$_POST["name"]."','".$_POST["category"]."','".$_POST["birthday"]."')";
+if ($dbh->query($sql)) {
+echo "Inserted Successfully";
+}
+else{
+echo "Data not successfully Inserted.";
+}
 
-           try {
-                 $dbh = new PDO("mysql:host=$hostname;dbname=zoo;port=8889", $username, $password);
+$dbh = null;
+}
+catch(PDOException $e)
+{
+echo $e->getMessage();
+}
+}
+?>
 
-             $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // <== add this line
-                 $sql = "INSERT INTO animals (name, category, birthday)
-     VALUES ('" . $_POST["name"] . "','" . $_POST["category"] . "','" . $_POST["birthday"] . "')";
-                 if ($dbh->query($sql)) {
-                    echo "Inserted Successfully";
-                } else {
-                     echo "Data not successfully Inserted.";
-                }
-
-                $dbh = null;
-             } catch (PDOException $e) {
-                 echo $e->getMessage();
-             }
-        }
-    ?>
 </body>
 
 </html>

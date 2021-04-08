@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-//include_once 'includes/dbh.inc.php';
+include_once 'includes/dbh.inc.php';
 ?>
 
 <html>
@@ -12,21 +12,20 @@ error_reporting(E_ALL);
 </head>
 
 <body>
-  <h1>Search in database</h1>
-  <?php
-  $mysqli = new MySQLi('localhost', 'zooadmin', 'zoopwd', 'zoo', '8889');
-  $resultSet = $mysqli->query("SELECT DISTINCT category FROM animals");
+<h1>Search in database</h1>
+ <?php
+  $query = "SELECT DISTINCT category FROM animals";
+  $stmt = $dbh->prepare($query, array(PDO::FETCH_ASSOC));$stmt->execute(array(':id' > 0));
+  $result = $stmt->fetchAll();
   ?>
-  <select>
-    <?php
-    while ($rows = $resultSet->FETCH_ASSOC()) {
-      $categoryName = $rows['category'];
-      echo "<option value='$categoryName'>$categoryName</option>";
-    }
-    ?>
-  </select>
-
-
+  <form action="query.php" method="POST">
+ <select name="animals">
+<?php foreach ($result as $row): ?>
+    <option><?=$row["category"]?></option>
+<?php endforeach ?>
+</select>
+  <button type="submit">Search</button>
+</form>
 </body>
-
 </html>
+
