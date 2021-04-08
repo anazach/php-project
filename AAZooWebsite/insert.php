@@ -16,13 +16,6 @@ include "includes/dbh.inc.php";
 <input type="text" name="category" required="required" placeholder="Category"/><br/><br />
 <label>Birthday:</label>
 <input type="text" name="birthday" required="required" placeholder="Birth date"/><br/><br />
-
- <div class="row mt-4">
-        <form action="upload.php" method="POST" enctype="multipart/form-data">
-        <input type="file" name="file">
-        <button type="submit" name="uplad">Upload</button>
-        </form>
-    </div>
 <input type="submit" value="Add animal" name="submit"/><br />
 </form>
 </div>
